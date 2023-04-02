@@ -14,6 +14,15 @@
             padding: 0;
             box-sizing: inherit;
         }
+        
+        :root{
+            --prim: aqua;
+            --sec: #20262E;
+            --tri: #0c0f12;
+            --text: white;
+            --prim2: lightseagreen;
+        }
+        
 
         html {
             box-sizing: border-box;
@@ -25,7 +34,7 @@
         }
 
         body {
-            background-color: #F0EBE3;
+            background-color: whitesmoke;
             color: black;
             min-height: 100vh;
         }
@@ -38,8 +47,8 @@
             font-size: 2rem;
             height: 20%;
             width: 100%;
-            background-color: #576F72;
-            color: #F0EBE3;
+            background-color: var(--sec);
+            color: var(--prim);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -195,7 +204,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background: #7D9D9C;
+            background: var(--sec);
             color: black;
             position: fixed;
             bottom: 0;
@@ -376,13 +385,13 @@
     let dark = 0;
     function darkMode() {
         if (dark == 0) {
-            document.body.style.backgroundColor = "#222831";
-            document.body.style.color = "#FFD369";
+            document.body.style.backgroundColor = "#0c0f12";
+            document.body.style.color = "aqua";
             document.getElementById("dark-light").innerHTML = "☀️";
             document.getElementById("sec-1").backgroundColor = "#EEEEEE";
             dark = 1;
         } else {
-            document.body.style.backgroundColor = "#F0EBE3";
+            document.body.style.backgroundColor = "whitesmoke";
             document.body.style.color = "black";
             document.getElementById("dark-light").innerHTML = "🌙"
             dark = 0;
