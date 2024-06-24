@@ -307,8 +307,13 @@
         console.log(prev, globgpa, globsemnum,globsemnum);
         if (globgpa != 0 && globsemnum != 0) {
             newcpga = Math.round(((prev * semCumCredits[globsemnum - 1] + (semCumCredits[globsemnum] - semCumCredits[globsemnum - 1]) * globgpa) / (semCumCredits[globsemnum])) * 100) / 100;
+            
+            if(globsemnum == 7){
+                            document.getElementById("sec-3").innerHTML = "<b>College Aipoindhiga 🤠😇</b><b>Chill....</b><br>SGPA :" + globgpa + "<br>CGPA :" + newcpga +"<br><br>Signing off...<i>Y20CS161</i>";
+            }else{
+                            document.getElementById("sec-3").innerHTML = "<b>Congratulations🥳🥳</b><br>SGPA :" + globgpa + "<br>CGPA :" + newcpga;
+            }
 
-            document.getElementById("sec-3").innerHTML = "<b>Congratulations🥳🥳</b><br>SGPA :" + globgpa + "<br>CGPA :" + newcpga;
         } else document.getElementById("sec-3").innerHTML = "SGPA :" + globgpa;
     }
     function hello() {
