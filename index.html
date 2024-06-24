@@ -14,15 +14,15 @@
             padding: 0;
             box-sizing: inherit;
         }
-        
-        :root{
+
+        :root {
             --prim: aqua;
             --sec: #20262E;
             --tri: #0c0f12;
             --text: white;
             --prim2: lightseagreen;
         }
-        
+
 
         html {
             box-sizing: border-box;
@@ -214,8 +214,9 @@
         footer>* {
             margin: 0px 50px;
         }
-        .imgg{
-            background-color : var(--prim);
+
+        .imgg {
+            background-color: var(--prim);
             border-radius: 10px;
             padding: 5px;
         }
@@ -296,16 +297,16 @@
 
 
     let credits = [[[3, 3, 3, 3, 1.5, 1.5, 3, 1.5], [3, 3, 3, 3, 2, 1.5, 1, 1.5, 1.5]], [[3, 3, 3, 3, 3, 1.5, 1.5, 1.5, 2], [3, 3, 3, 3, 3, 1.5, 1.5, 1.5, 2]], [[3, 3, 3, 3, 3, 1.5, 1.5, 1.5, 2], [3, 3, 3, 3, 3, 1.5, 1.5, 1.5, 2]], [[3, 3, 3, 3, 3, 3, 3, 2], [12]]]
-
+    let semCumCredits = [19.5, 39, 60.5, 82, 103.5, 125 , 148, 160]
     let subjs = [[['M1', 'EP', 'BEEE', 'PPS', 'EP LAB', 'BEEE LAB', 'EG LAB', 'PPS LAB'], ['M2', 'EC', 'DE', 'ECS', 'PP', 'EC LAB', 'PP LAB', 'CEW', 'ECS LAB']], [['P&S', 'DMS', 'CO', 'DS', 'OOP', 'P&S LAB', 'DS LAB', 'OOP LAB', 'SOC'], ['CS', 'DBMS', 'OS', 'SE', 'WT', 'CS LAB', 'DBMS LAB', 'WT LAB', 'SOC']], [['AFL', 'CN', 'DAA', 'PE-1', 'OE-1', 'DAA LAB', 'DA LAB', 'SUM INTERN', 'SOC'], ['AI', 'CNS', 'ML', 'PE-2', 'OE-2', 'AI LAB', 'ML LAB', 'TERM PAPER', 'SOC']], [['HSS', 'PE-3', 'PE-4', 'PE-5', 'OE-3', 'OE-4', 'INTERN', 'SOC'], ['PROJECT/INTERN']]];
 
 
     function compute() {
         let prev = parseFloat(document.getElementById('cpga').value);
         let newcpga = 0;
-        console.log(prev, globgpa, globsemnum);
+        console.log(prev, globgpa, globsemnum,globsemnum);
         if (globgpa != 0 && globsemnum != 0) {
-            newcpga = Math.round(((prev * globsemnum + globgpa) / (globsemnum + 1)) * 100) / 100;
+            newcpga = Math.round(((prev * semCumCredits[globsemnum - 1] + (semCumCredits[globsemnum] - semCumCredits[globsemnum - 1]) * globgpa) / (semCumCredits[globsemnum])) * 100) / 100;
 
             document.getElementById("sec-3").innerHTML = "<b>Congratulations🥳🥳</b><br>SGPA :" + globgpa + "<br>CGPA :" + newcpga;
         } else document.getElementById("sec-3").innerHTML = "SGPA :" + globgpa;
@@ -334,7 +335,7 @@
         console.log("Global gpa : " + globgpa);
         let cpfrm = `<form action="#" id="cgpaform" onsubmit="return false">
                 <label for="cgpa">Enter previous CGPA</label>
-                <input type="number" id="cpga">
+                <input type="number" step=".01" id="cpga">
                 <button class="submit"type="submit" onclick="compute()">Calculate</button>
             </form>`;
         $('#sec-3').append("\n <b>Here we go!</b><br>The SGPA : " + globgpa + "<br>" + cpfrm);
